@@ -1,18 +1,31 @@
+
+
 #[test]
 pub fn test_jaccard_sim() {
-    let graph: Vec<Vec<i32>> = vec![
-        vec![],
-        vec![2, 3],
-        vec![1, 3, 4],
-        vec![2, 4],
-        vec![3],
+    let graph = vec![
+        vec![1, 2, 3],
+        vec![2, 3, 4],
+        vec![3, 4, 5],
+        vec![4, 5],
     ];
-    let sims = crate::jaccard_similarity::jaccard_sim(&graph);
-    assert_eq!(sims.len(), 6);
+    // Test jaccard_sim()
+    let expected_output = vec![
+        (0, 1, 0.5),
+        (0, 2, 0.2),
+        (0, 3, 0.0),
+        (1, 0, 0.5),
+        (1, 2, 0.5),
+        (1, 3, 0.25),
+        (2, 0, 0.2),
+        (2, 1, 0.5),
+        (2, 3, 0.6666667),
+        (3, 0, 0.0),
+        (3, 1, 0.25),
+        (3, 2, 0.6666667),
+    ];
+    let actual_output = crate::jaccard_similarity::jaccard_sim(&graph);
+    assert_eq!(actual_output, expected_output);
 
-    assert_eq!(sims[0], (1, 2, 0.25));
-    assert_eq!(sims[1], (1, 3, 0.33333334));
-    assert_eq!(sims[2], (1, 4, 0.5));
 }
 
 #[test]
