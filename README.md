@@ -1,15 +1,15 @@
 # DS210-final-project
 This is my final project for DS210
 
-Writeup: 
+Writeup:
 
-This project follows the model of, "How often are friends of my friends my friends?" as an example it uses 'facebook.txt' a file that contains an undirected graph with ~4000 nodes. Each node represents a person and their connection is another node that is their "friend". 
+This project follows the model of "How often are friends of my friends my friends?" as an example. It uses 'facebook.txt,' a file that contains an undirected graph with ~4000 nodes. Each node represents a person, and their connection is another node that is their "friend." 
 
-This code reads the facebook.txt (which is included in the repository but can also be found in the link below) and places it all into a vector of vectors where the index of each vector contains a vector with its connecting points on the graph. so if it was given: "0 1, 0 2, 1 2" the 0th index would contain a vector of 1,2 and the 1st index would contain a vector of 2. 
+This code reads the facebook.txt (which is included in the repository but can also be found in the link below) and places it all into a vector of vectors where the index of each vector contains a vector with its connecting points on the graph. So if it was given: "0 1, 0 2, 1 2," the 0th index would contain a vector of 1,2, and the 1st index would have a vector of 2. 
 
-the graphs vector of vector is then passes into the Jaccard similarity function module. This module calculates the jaccard similarity between every vertex in the graph. Jaccard similarity is a way of calculating what two lists have in common by taking the intesection (what each vector shares) and the union (their differences) and dividing them to created the jaccard similarity. The function itself takes in the vector of vectors and iterates through each vector, using the idx of each vector to determine the exact vertex it is using. the function creates a hashset for the vertex it is currently comparing, and then iterates through the rest of the graph (skipping itself). each iteration of this nested loop appends the two vertecies being compared and their similarity score to a list. Once every vertex has been calculated, the function returns the list. 
+The vector's graphs vector is then passed into the Jaccard similarity function module. This module calculates the Jaccard similarity between every vertex in the graph. The Jaccard similarity calculates what two lists have in common by taking the intersection (what each vector shares) and the union (their differences) and dividing them to create the Jaccard similarity. First, the function takes in the vector of vectors and iterates through each vector, using the idx of each vector to determine the exact vertex it is operating. Next, the function creates a HashSet for the vertex it is currently comparing and then iterates through the rest of the graph (skipping itself). Each iteration of this nested loop appends the two vertices being compared and their similarity score to a list. Once every vertex has been calculated, the function returns the list. 
 
-This list is then sorted using a quicksort algoritm and finnnaly the least similar and most similar points are printed. 
+This list is then sorted using a quicksort algorithm, and finally, the least similar and most similar points are printed.  
 
 Example output:
 
