@@ -26,7 +26,7 @@ pub fn read(file_path: &str) -> Vec<Vec<i32>> {
         while data.len() <= idx {
             data.push(Vec::new());
         }
-        
+
         // Add the neighbor to the adjacency list for the current vertex
         data[idx].push(val);
     }
