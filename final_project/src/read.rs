@@ -2,33 +2,26 @@
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
-// Define the function that takes a path as a parameter
-pub fn read(path: &str) -> Vec<Vec<i32>> {
-    // Initialize an empty vector to store the result
-    let mut result: Vec<Vec<i32>> = Vec::new();
+pub fn read(file_path: &str) -> Vec<Vec<i32>> {
+    let file: File = File::open(file_path).unwrap();
+    let reader: BufReader<File> = BufReader::new(file);
 
-    // Open the file at the specified path
-    let file: File = File::open(path).expect("Could not open file");
+    let mut data: Vec<Vec<i32>> = Vec::new();
 
-    // Initialize a buffer to read lines from the file
-    let buffer: std::io::Lines<BufReader<File>> = BufReader::new(file).lines();
-
-    // Loop through each line in the buffer
-    for line in buffer {
-        // Extract the line as a string
-        let line_str = line.expect("Error reading");
-
-        // Parse the line as a vector of integers
-        let vector_from_txt: Vec<i32> = line_str
-            .trim()
-            .split(" ")
-            .map(|s: &str| s.parse().expect("Error parsing"))
+    for line in reader.lines() {
+        let nums: Vec<i32> = line.unwrap()
+            .split_whitespace()
+            .map(|s| s.parse().unwrap())
             .collect();
 
-        // Add the parsed vector to the result
-        result.push(vector_from_txt);
+        let (idx, val) = (nums[0] as usize, nums[1]);
+
+        while data.len() <= idx {
+            data.push(Vec::new());
+        }
+
+        data[idx].push(val);
     }
 
-    // Return the parsed vectors as a Vec<Vec<i32>>
-    result
+    data
 }
